@@ -81,7 +81,10 @@ class AudioVisualizer(QtWidgets.QWidget):
 
             # auto zoom y-axis
             peak = max(np.max(np.abs(rolling_buffer)), 1e-6)
-            self.p_wave.setYRange(-peak*1.1, peak*1.1)
+            if peak > 0.10:
+                self.p_wave.setYRange(-peak*1.1, peak*1.1)
+            else:
+                self.p_wave.setYRange(-0.1, 0.1)
             self.curve_wave.setData(self.x_time, rolling_buffer)
 
             yf = np.abs(rfft(y))
