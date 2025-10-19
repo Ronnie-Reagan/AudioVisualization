@@ -72,7 +72,6 @@ class AudioVisualizer(QtWidgets.QWidget):
         self.x_freq = rfftfreq(CHUNK, 1 / SAMPLE_RATE)
 
     def update_plot(self):
-        global rolling_buffer
         if not audio_q.empty():
             y = audio_q.get()
 
